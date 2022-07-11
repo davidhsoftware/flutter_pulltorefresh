@@ -33,7 +33,7 @@ class BezierHeader extends RefreshIndicator {
   // container height(not contain bezier)
   final double rectHeight;
 
-  BezierHeader(
+  const BezierHeader(
       {this.child: const Text(""),
       this.onOffsetChange,
       this.onModeChange,
@@ -286,7 +286,7 @@ class BezierCircleHeader extends StatefulWidget {
 
   final BezierDismissType dismissType;
 
-  BezierCircleHeader(
+  const BezierCircleHeader(
       {this.bezierColor,
       this.rectHeight: 70,
       this.circleColor: Colors.white,

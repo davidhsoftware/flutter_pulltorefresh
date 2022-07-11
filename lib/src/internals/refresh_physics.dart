@@ -207,7 +207,9 @@ class RefreshPhysics extends ScrollPhysics {
       }
     }
     if (maxOverScrollExtent != double.infinity && value < topBoundary && topBoundary < position.pixels) // hit top edge
+    {
       return value - topBoundary;
+    }
     if (maxUnderScrollExtent != double.infinity && position.pixels < bottomBoundary && bottomBoundary < value) {
       // hit bottom edge
       return value - bottomBoundary;
@@ -218,11 +220,15 @@ class RefreshPhysics extends ScrollPhysics {
       if (maxOverScrollExtent != double.infinity &&
           value < position.pixels &&
           position.pixels <= topBoundary) // underscroll
+      {
         return value - position.pixels;
+      }
       if (maxUnderScrollExtent != double.infinity &&
           bottomBoundary <= position.pixels &&
           position.pixels < value) // overscroll
+      {
         return value - position.pixels;
+      }
     }
     return 0.0;
   }

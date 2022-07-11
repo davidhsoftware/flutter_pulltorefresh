@@ -49,7 +49,7 @@ void main() {
         enablePullUp: true,
         enablePullDown: true,
         child: CustomScrollView(
-          slivers: <Widget>[
+          slivers: const <Widget>[
             SliverToBoxAdapter(
               child: Text("asd"),
             ),

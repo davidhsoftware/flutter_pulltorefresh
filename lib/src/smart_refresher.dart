@@ -203,7 +203,7 @@ class SmartRefresher extends StatefulWidget {
   /// such as AnimatedList,RecordableList,doesn't allow to put into child,it will wrap it into SliverToBoxAdapter
   /// If you don't need pull down refresh ,just enablePullDown = false,
   /// If you  need pull up load ,just enablePullUp = true
-  SmartRefresher(
+  const SmartRefresher(
       {Key? key,
       required this.controller,
       this.child,
@@ -233,7 +233,7 @@ class SmartRefresher extends StatefulWidget {
   /// for example,NestedScrollView is a StalessWidget,it's headerSliversbuilder can return a slivers array,So if we want to do
   /// refresh above NestedScrollVIew,we must use this constrctor to implements refresh above NestedScrollView,but for now,NestedScrollView
   /// can not support overscroll out of edge
-  SmartRefresher.builder({
+  const SmartRefresher.builder({
     Key? key,
     required this.controller,
     required this.builder,
@@ -495,10 +495,10 @@ class SmartRefresherState extends State<SmartRefresher> {
   Widget build(BuildContext context) {
     final RefreshConfiguration? configuration = RefreshConfiguration.of(context);
     Widget? body;
-    if (widget.builder != null)
+    if (widget.builder != null) {
       body =
           widget.builder!(context, _getScrollPhysics(configuration, AlwaysScrollableScrollPhysics()) as RefreshPhysics);
-    else {
+    } else {
       List<Widget>? slivers = _buildSliversByChild(context, widget.child, configuration);
       body = _buildBodyBySlivers(widget.child, slivers, configuration);
     }
@@ -834,7 +834,7 @@ class RefreshConfiguration extends InheritedWidget {
   /// toggle of  loadmore vibrate
   final bool enableLoadMoreVibrate;
 
-  RefreshConfiguration(
+  const RefreshConfiguration(
       {Key? key,
       required this.child,
       this.headerBuilder,
