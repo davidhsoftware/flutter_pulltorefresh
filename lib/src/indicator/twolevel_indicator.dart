@@ -5,10 +5,9 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'classic_indicator.dart';
+
 import '../smart_refresher.dart';
+import 'classic_indicator.dart';
 
 enum TwoLevelDisplayAlignment { fromTop, fromCenter, fromBottom }
 
@@ -64,19 +63,9 @@ class TwoLevelHeader extends StatelessWidget {
   /// fromTop use with RefreshStyle.Behind,from bottom use with Follow Style
   final TwoLevelDisplayAlignment displayAlignment;
   // the following is the same with ClassicHeader
-  final String? releaseText,
-      idleText,
-      refreshingText,
-      completeText,
-      failedText,
-      canTwoLevelText;
+  final String? releaseText, idleText, refreshingText, completeText, failedText, canTwoLevelText;
 
-  final Widget? releaseIcon,
-      idleIcon,
-      refreshingIcon,
-      completeIcon,
-      failedIcon,
-      canTwoLevelIcon;
+  final Widget? releaseIcon, idleIcon, refreshingIcon, completeIcon, failedIcon, canTwoLevelIcon;
 
   /// icon and text middle margin
   final double spacing;
@@ -114,9 +103,7 @@ class TwoLevelHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return ClassicHeader(
-      refreshStyle: displayAlignment == TwoLevelDisplayAlignment.fromBottom
-          ? RefreshStyle.Follow
-          : RefreshStyle.Behind,
+      refreshStyle: displayAlignment == TwoLevelDisplayAlignment.fromBottom ? RefreshStyle.Follow : RefreshStyle.Behind,
       height: height,
       refreshingIcon: refreshingIcon,
       refreshingText: refreshingText,
@@ -135,16 +122,13 @@ class TwoLevelHeader extends StatelessWidget {
       textStyle: textStyle,
       iconPos: iconPos,
       outerBuilder: (child) {
-        final RefreshStatus? mode =
-            SmartRefresher.of(context)!.controller.headerStatus;
+        final RefreshStatus? mode = SmartRefresher.of(context)!.controller.headerStatus;
         final bool isTwoLevel = (mode == RefreshStatus.twoLevelClosing ||
             mode == RefreshStatus.twoLeveling ||
             mode == RefreshStatus.twoLevelOpening);
         if (displayAlignment == TwoLevelDisplayAlignment.fromBottom) {
           return Container(
-            decoration: !isTwoLevel
-                ? (decoration ?? BoxDecoration(color: Colors.redAccent))
-                : null,
+            decoration: !isTwoLevel ? (decoration ?? BoxDecoration(color: Colors.redAccent)) : null,
             height: SmartRefresher.ofState(context)!.viewportExtent,
             alignment: isTwoLevel ? null : Alignment.bottomCenter,
             child: isTwoLevel
@@ -159,9 +143,7 @@ class TwoLevelHeader extends StatelessWidget {
             child: isTwoLevel
                 ? twoLevelWidget
                 : Container(
-                    decoration: !isTwoLevel
-                        ? (decoration ?? BoxDecoration(color: Colors.redAccent))
-                        : null,
+                    decoration: !isTwoLevel ? (decoration ?? BoxDecoration(color: Colors.redAccent)) : null,
                     alignment: Alignment.bottomCenter,
                     child: child,
                     padding: EdgeInsets.only(bottom: 15),

@@ -4,7 +4,6 @@
  * Time:  2019-07-03 17:24
  */
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -21,8 +20,7 @@ class DraggableLoadingBottomSheet extends StatefulWidget {
   }
 }
 
-class _DraggableLoadingBottomSheetState
-    extends State<DraggableLoadingBottomSheet> {
+class _DraggableLoadingBottomSheetState extends State<DraggableLoadingBottomSheet> {
   RefreshController _controller = RefreshController();
 
   List<String> items = [];
@@ -42,7 +40,7 @@ class _DraggableLoadingBottomSheetState
         title: const Text('DraggableScrollableSheet'),
       ),
       body: Container(
-        child: RaisedButton(
+        child: ElevatedButton(
           onPressed: () {
             showModalBottomSheet(
                 backgroundColor: Colors.transparent,
@@ -52,8 +50,7 @@ class _DraggableLoadingBottomSheetState
                     initialChildSize: 1.0,
                     maxChildSize: 1.0,
                     minChildSize: 0.5,
-                    builder: (BuildContext context,
-                        ScrollController scrollController) {
+                    builder: (BuildContext context, ScrollController scrollController) {
                       return Container(
                         color: Colors.blue[100],
                         child: StatefulBuilder(
@@ -63,8 +60,7 @@ class _DraggableLoadingBottomSheetState
                                 controller: scrollController,
                                 separatorBuilder: (c, i) => Divider(),
                                 itemBuilder: (_, e) => Container(
-                                  child:
-                                      Center(child: Text("菜单" + e.toString())),
+                                  child: Center(child: Text("菜单" + e.toString())),
                                   height: 40.0,
                                 ),
                                 physics: ClampingScrollPhysics(),
@@ -72,8 +68,7 @@ class _DraggableLoadingBottomSheetState
                               ),
                               controller: _controller,
                               onLoading: () async {
-                                await Future.delayed(
-                                    Duration(milliseconds: 1000));
+                                await Future.delayed(Duration(milliseconds: 1000));
                                 _controller.loadComplete();
                                 for (int i = 0; i < 15; i++) {
                                   items.add("1");
