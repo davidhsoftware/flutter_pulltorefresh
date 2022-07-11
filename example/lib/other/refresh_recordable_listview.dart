@@ -75,10 +75,7 @@ class RefreshReorderableListView extends StatefulWidget {
     this.enablePullUp: false,
     this.onRefresh,
     this.onLoading,
-  })  : assert(scrollDirection != null),
-        assert(onReorder != null),
-        assert(children != null),
-        assert(
+  })  : assert(
           children.every((Widget w) => w.key != null),
           'All children of this widget must have a key.',
         );
@@ -341,7 +338,6 @@ class _ReorderableListContentState extends State<_ReorderableListContent>
     final RenderObject contextObject = context.findRenderObject();
     final RenderAbstractViewport viewport =
         RenderAbstractViewport.of(contextObject);
-    assert(viewport != null);
     // If and only if the current scroll offset falls in-between the offsets
     // necessary to reveal the selected context at the top or bottom of the
     // screen, then it is already on-screen.
@@ -510,8 +506,7 @@ class _ReorderableListContentState extends State<_ReorderableListContent>
         ),
         child: _dragging == toWrap.key ? const SizedBox() : toWrapWithSemantics,
         childWhenDragging: const SizedBox(),
-        dragAnchor: DragAnchor.child,
-        onDragStarted: onDragStarted,
+        onDragStarted: onDragStarted, dragAnchorStrategy: childDragAnchorStrategy,
         // When the drag ends inside a DragTarget widget, the drag
         // succeeds, and we reorder the widget into position appropriately.
         onDragCompleted: onDragEnded,
@@ -593,9 +588,7 @@ class _ReorderableListContentState extends State<_ReorderableListContent>
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       final List<Widget> wrappedChildren = <Widget>[];
-      if (widget.header != null) {
-        wrappedChildren.add(widget.header);
-      }
+      wrappedChildren.add(widget.header);
       for (int i = 0; i < widget.children.length; i += 1) {
         wrappedChildren.add(_wrap(widget.children[i], i, constraints));
       }

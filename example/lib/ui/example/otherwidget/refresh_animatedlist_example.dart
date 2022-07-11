@@ -2,7 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -71,13 +70,11 @@ class _AnimatedListExampleState extends State<AnimatedListExample> {
 
   // Remove the selected item from the list model.
   void _remove() {
-    if (_selectedItem != null) {
-      _list.removeAt(_list.indexOf(_selectedItem));
-      if (mounted)
-        setState(() {
-          _selectedItem = null;
-        });
-    }
+    _list.removeAt(_list.indexOf(_selectedItem));
+    if (mounted)
+      setState(() {
+        _selectedItem = null;
+      });
   }
 
   RefreshController _refreshController = RefreshController();
@@ -141,8 +138,7 @@ class ListModel<E> {
     @required this.listKey,
     @required this.removedItemBuilder,
     Iterable<E> initialItems,
-  })  : assert(listKey != null),
-        assert(removedItemBuilder != null),
+  })  : assert(removedItemBuilder != null),
         _items = new List<E>.from(initialItems ?? <E>[]);
 
   final GlobalKey<SliverAnimatedListState> listKey;
@@ -185,9 +181,7 @@ class CardItem extends StatelessWidget {
       this.onTap,
       @required this.item,
       this.selected: false})
-      : assert(animation != null),
-        assert(item != null && item >= 0),
-        assert(selected != null),
+      : assert(item >= 0),
         super(key: key);
 
   final Animation<double> animation;

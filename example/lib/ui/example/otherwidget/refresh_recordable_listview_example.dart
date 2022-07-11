@@ -9,9 +9,7 @@
 // found in the LICENSE file.
 
 import 'package:example/other/refresh_recordable_listview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 enum _ReorderableListType {
@@ -74,11 +72,11 @@ class _ListDemoState extends State<ReorderableListDemo> {
       });
     // Rebuild the bottom sheet to reflect the selected list view.
     if (mounted)
-      _bottomSheet?.setState(() {
+      _bottomSheet.setState(() {
         // Trigger a rebuild.
       });
     // Close the bottom sheet to give the user a clear view of the list.
-    _bottomSheet?.close();
+    _bottomSheet.close();
   }
 
   void changeReverse(bool newValue) {
@@ -88,11 +86,11 @@ class _ListDemoState extends State<ReorderableListDemo> {
       });
     // Rebuild the bottom sheet to reflect the selected list view.
     if (mounted)
-      _bottomSheet?.setState(() {
+      _bottomSheet.setState(() {
         // Trigger a rebuild.
       });
     // Close the bottom sheet to give the user a clear view of the list.
-    _bottomSheet?.close();
+    _bottomSheet.close();
   }
 
   void _showConfigurationSheet() {

@@ -86,7 +86,7 @@ class _RenderExpandedViewport extends RenderViewport {
       p = childAfter(p);
     }
 
-    if (expand != null && size.height > totalLayoutExtent) {
+    if (size.height > totalLayoutExtent) {
       _attemptLayout(expand, size.height, size.width,
           offset.pixels - frontExtent - (size.height - totalLayoutExtent));
     }
